@@ -29,22 +29,26 @@ const Genre = genreModel(sequelize, Sequelize);
 const Director = directorModel(sequelize, Sequelize);
 
 //Referencia directa generos(uno)-movies(muchos)
-Genre.hasMany(Movie, {as: 'movies'});
-Movie.belongsTo(Genre, {as: 'genre'});
+//Genre.hasMany(Movie, {as: 'movies'});
+Movie.belongsTo(Genre, {foreignKey: 'genre_id'});
 
 //Referencia directa directors(uno)-movies(muchos)
-Director.hasMany(Movie, {as: 'movies'});
-Movie.belongsTo(Director, {as: 'directors'});
+Movie.belongsTo(Director, {foreignKey: 'director_id'});
 
 //Referencia directa movies(uno)-copies(muchos)
-Movie.hasMany(Copie, {as: 'copies'});
 Copie.belongsTo(Movie, {foreignKey: 'movie_id'});
+
+//Referencia directa copie(uno)-booking(muchos)
+Booking.belongsTo(Copie, {foreignKey: 'copy_id'});
+//Referencia directa member(uno)-booking(muchos)
+Booking.belongsTo(Member, {foreignKey: 'member_id'});
+
 
 MoviesActors.belongsTo(Movie, {foreignKey: 'movie_id'});
 MoviesActors.belongsTo(Actor, {foreignKey: 'actor_id'});
 
 //moviesActors es el nombre de la tabla
-/*Movie.belongsToMany(Actor, {
+Movie.belongsToMany(Actor, { 
   through: 'moviesActors',
   foreignKey: 'actor_id',
   as: 'actors'
@@ -54,7 +58,7 @@ Actor.belongsToMany(Movie, {
   through: 'moviesActors',
   foreignKey: 'movie_id',
   as: 'movies'
-});*/
+});
 
 
 sequelize.sync({
