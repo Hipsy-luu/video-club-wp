@@ -4,7 +4,7 @@ module.exports = (sequelize, type) => {
         number: type.INTEGER,
         format: type.ENUM('value 1', 'value 2'),
         movie_id: type.INTEGER,
-        estatus: type.ENUM('value 1', 'value 2')
+        status: type.ENUM('value 1', 'value 2')
     });
   
     return Copie;

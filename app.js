@@ -1,12 +1,25 @@
+//Esta parte sirve para declarar la app como tal y asignarle cosas como las rutas 
+//el punto de partida de la aplicacion de este archivo de levanta en la carpeta ./bin con el archivo www
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
+//Ejemplos Clase
+const indexRouter = require('./routes/indexs');
 const usersRouter = require('./routes/users');
+
+//Rutas creadas para el crud de cada tabla
 const actorsRouter = require('./routes/actors');
+const bookingsRouter = require('./routes/bookings');
+const copiesRouter = require('./routes/copies');
+const directorsRouter = require('./routes/directors');
+const genresRouter = require('./routes/genres');
+const membersRouter = require('./routes/members');
+const moviesRouter = require('./routes/movies');
+const moviesactorsRouter = require('./routes/moviesactors');
 
 const app = express();
 
@@ -23,6 +36,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/actors', actorsRouter);
+app.use('/bookings', bookingsRouter);
+app.use('/copies', copiesRouter);
+app.use('/directors', directorsRouter);
+app.use('/genres', genresRouter);
+app.use('/members', membersRouter);
+app.use('/movies', moviesRouter);
+app.use('/moviesactor', moviesactorsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

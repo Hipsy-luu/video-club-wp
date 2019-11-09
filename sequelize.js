@@ -48,7 +48,7 @@ MoviesActors.belongsTo(Movie, {foreignKey: 'movie_id'});
 MoviesActors.belongsTo(Actor, {foreignKey: 'actor_id'});
 
 //moviesActors es el nombre de la tabla
-Movie.belongsToMany(Actor, { 
+/*Movie.belongsToMany(Actor, { 
   through: 'moviesActors',
   foreignKey: 'actor_id',
   as: 'actors'
@@ -58,7 +58,7 @@ Actor.belongsToMany(Movie, {
   through: 'moviesActors',
   foreignKey: 'movie_id',
   as: 'movies'
-});
+});*/
 
 
 sequelize.sync({
@@ -68,5 +68,5 @@ sequelize.sync({
 });
 
 module.exports = {
-  Actor, Genre, Movie
+  Actor ,Booking ,Member ,MoviesActors ,Movie ,Copie ,Genre ,Director
 };
